@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/home.dart';
-import 'package:google_ml_vision/google_ml_vision.dart';
+import 'package:fyp/BarCode.dart';
+import 'package:fyp/ImageToText.dart';
 // import 'package:google_ml_kit/google_ml_kit.dart';
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: TextRecognitionExample(),
+      home: Barcode1(),
     );
   }
 }

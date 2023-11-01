@@ -11,6 +11,7 @@ class TextRecognitionExample extends StatefulWidget {
 class _TextRecognitionExampleState extends State<TextRecognitionExample> {
   String scannedText = '';
   bool isTextScanning = false;
+  File? selectedImage; // Store the selected image file.
 
   Future<void> pickAndRecognizeText() async {
     final picker = ImagePicker();
@@ -57,16 +58,23 @@ class _TextRecognitionExampleState extends State<TextRecognitionExample> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
-            if (scannedText.isNotEmpty)
-              Text(scannedText)
+            if (selectedImage != null)
+              Image.file(selectedImage!, width: 200, height: 200)
             else
-              Text('No text scanned'),
+              Container(
+                height: 200,
+                width: 200,
+                color: Colors.grey,
+              ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: pickAndRecognizeText,
               child: Text('Pick Image and Recognize Text'),
             ),
+            if (scannedText.isNotEmpty)
+              Text(scannedText)
+            else
+              Text('No text scanned'),
           ],
         ),
       ),
