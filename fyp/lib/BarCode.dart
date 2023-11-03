@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
@@ -31,8 +30,8 @@ class _Barcode1State extends State<Barcode1> {
       isScanning = true;
     });
     try {
-      final inputImage = InputImage.fromFile(
-          selectedImage!); // Use the selected image for barcode scanning.
+      final inputImage =
+          InputImage.fromFile(imageFile); // Use the imageFile parameter.
       final barcodes = await barcodeScanner.processImage(inputImage);
 
       if (barcodes.isNotEmpty) {
