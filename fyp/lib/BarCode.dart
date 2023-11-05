@@ -36,8 +36,7 @@ class _Barcode1State extends State<Barcode1> {
 
       if (barcodes.isNotEmpty) {
         scannedBarcode = barcodes[0]
-            .value
-            .toString(); // Assuming you only want the first barcode found.
+            .value.toString(); // Assuming you only want the first barcode found.
       } else {
         scannedBarcode = 'No barcode found';
       }
