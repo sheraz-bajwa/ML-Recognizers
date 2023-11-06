@@ -69,70 +69,128 @@ class _TextRecognitionExampleState extends State<TextRecognitionExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Text RecogniZer'),
+        title: Text(
+          'Text RecogniZer',
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              letterSpacing: 1),
+        ),
+        centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            if (selectedImage != null)
-              Image.file(
-                selectedImage!,
-                width: 300,
-                height: 300,
-                fit: BoxFit.cover,
-              ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: pickAndRecognizeText,
-              child: Text('Pick Image and Recognize Text'),
-            ),
-            if (scannedText.isNotEmpty)
-              Text(scannedText)
-            else
-              IntrinsicHeight(
-                child: IntrinsicWidth(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'No text scanned',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600),
-                        ),
-                      )),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(height: 50),
+
+              if (selectedImage != null)
+                Column(
+                  children: [
+                    Image.file(
+                      selectedImage!,
+                      width: 300,
+                      height: 300,
+                      fit: BoxFit.cover,
+                    ),
+                    Divider(),
+                  ],
+                )
+              else
+                Container(
+                  height: 300,
+                  width: 300,
+                  color: Colors.grey,
+                  child: Center(
+                      child: Text(
+                    "No Image is Selected",
+                    style: TextStyle(color: Colors.white),
+                  )),
                 ),
+              // SizedBox(height: 30),
+              // ElevatedButton(
+              //   onPressed: pickAndRecognizeText,
+              //   child: Text('Pick Image and Recognize Text'),
+              // ),
+
+              SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AnimatedButton(
+                    height: 50,
+                    width: 150,
+                    text: 'Camera',
+                    isReverse: true,
+                    selectedText: 'Selected',
+                    selectedTextColor: Colors.white,
+                    transitionType: TransitionType.CENTER_LR_IN,
+                    textStyle: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
+                    animatedOn: AnimatedOn.onTap,
+                    selectedGradientColor: LinearGradient(
+                        colors: [Colors.deepOrangeAccent, Colors.amber]),
+                    backgroundColor: Colors.deepOrangeAccent,
+                    borderColor: Colors.white,
+                    selectedBackgroundColor: Colors.deepOrangeAccent,
+                    borderRadius: 20,
+                    borderWidth: 2,
+                    onPress: CameraToRecognizeText,
+                  ),
+                  AnimatedButton(
+                    height: 50,
+                    width: 150,
+                    text: 'Gallery',
+                    isReverse: true,
+                    selectedText: 'Selected',
+                    selectedTextColor: Colors.white,
+                    transitionType: TransitionType.CENTER_LR_IN,
+                    textStyle: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
+                    animatedOn: AnimatedOn.onTap,
+                    selectedGradientColor: LinearGradient(
+                        colors: [Colors.deepOrangeAccent, Colors.amber]),
+                    backgroundColor: Colors.deepOrangeAccent,
+                    borderColor: Colors.white,
+                    selectedBackgroundColor: Colors.deepOrangeAccent,
+                    borderRadius: 20,
+                    borderWidth: 2,
+                    onPress: pickAndRecognizeText,
+                  ),
+                ],
               ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AnimatedButton(
-                  height: 50,
-                  width: 150,
-                  text: 'Camera',
-                  isReverse: true,
-                  selectedText: 'Selected',
-                  selectedTextColor: Colors.white,
-                  transitionType: TransitionType.CENTER_LR_IN,
-                  textStyle: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                  animatedOn: AnimatedOn.onTap,
-                  selectedGradientColor: LinearGradient(
-                      colors: [Colors.deepOrangeAccent, Colors.amber]),
-                  backgroundColor: Colors.black,
-                  borderColor: Colors.white,
-                  selectedBackgroundColor: Colors.black,
-                  borderRadius: 20,
-                  borderWidth: 2,
-                  onPress: () {},
+              SizedBox(height: 50),
+              if (scannedText.isNotEmpty)
+                Text(scannedText)
+              else
+                IntrinsicHeight(
+                  child: IntrinsicWidth(
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'No text scanned',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1),
+                          ),
+                        )),
+                  ),
                 ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
