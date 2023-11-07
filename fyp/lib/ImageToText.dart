@@ -168,7 +168,28 @@ class _TextRecognitionExampleState extends State<TextRecognitionExample> {
               ),
               SizedBox(height: 50),
               if (scannedText.isNotEmpty)
-                Text(scannedText)
+                IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IntrinsicWidth(
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              scannedText,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1),
+                            ),
+                          )),
+                    ),
+                  ),
+                )
               else
                 IntrinsicHeight(
                   child: IntrinsicWidth(
